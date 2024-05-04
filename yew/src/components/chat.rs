@@ -139,18 +139,18 @@ impl Component for Chat {
         let submit = ctx.link().callback(|_| Msg::SubmitMessage);
 
         html! {
-            <div class="flex w-screen">
-                <div class="flex-none w-56 h-screen bg-gray-100">
-                    <div class="text-xl p-3">{"Users"}</div>
+            <div class="flex w-screen" >
+                <div class="flex-none w-56 h-screen bg-green-100">
+                    <div class="text-xl p-3 font-sans font-bold">{"Users"}</div>
                     {
                         self.users.clone().iter().map(|u| {
                             html!{
-                                <div class="flex m-3 bg-white rounded-lg p-2">
+                                <div class="flex m-3 bg-white rounded-lg p-2 border-t-[10px]">
                                     <div>
                                         <img class="w-12 h-12 rounded-full" src={u.avatar.clone()} alt="avatar"/>
                                     </div>
                                     <div class="flex-grow p-3">
-                                        <div class="flex text-xs justify-between">
+                                        <div class="flex text-xs justify-between ">
                                             <div>{u.name.clone()}</div>
                                         </div>
                                         <div class="text-xs text-gray-400">
@@ -163,19 +163,19 @@ impl Component for Chat {
                     }
                 </div>
                 <div class="grow h-screen flex flex-col">
-                    <div class="w-full h-14 border-b-2 border-gray-300"><div class="text-xl p-3">{"💬 Chat!"}</div></div>
-                    <div class="w-full grow overflow-auto border-b-2 border-gray-300">
+                <div class="w-full h-14 border-b-2 border-gray-300"><div class="text-xl p-3 font-sans font-bold">{"💬 MEET NEW FRIENDS WITH "}<span class="text-lime-700">{"YEWCHAT!"}</span></div></div>
+                    <div class="w-full grow overflow-auto border-b-2 bg-green-900 bg-slate-100">
                         {
                             self.messages.iter().map(|m| {
                                 let user = self.users.iter().find(|u| u.name == m.from).unwrap();
                                 html!{
-                                    <div class="flex items-end w-3/6 bg-gray-100 m-8 rounded-tl-lg rounded-tr-lg rounded-br-lg ">
+                                    <div class="flex items-end w-3/6 bg-green-900 m-8 rounded-tl-lg rounded-tr-lg rounded-br-lg border-2">
                                         <img class="w-8 h-8 rounded-full m-3" src={user.avatar.clone()} alt="avatar"/>
                                         <div class="p-3">
-                                            <div class="text-sm">
+                                            <div class="text-sm text-white font-bold">
                                                 {m.from.clone()}
                                             </div>
-                                            <div class="text-xs text-gray-500">
+                                            <div class="text-xs text-gray-100">
                                                 if m.message.ends_with(".gif") {
                                                     <img class="mt-3" src={m.message.clone()}/>
                                                 } else {
@@ -190,8 +190,8 @@ impl Component for Chat {
 
                     </div>
                     <div class="w-full h-14 flex px-3 items-center">
-                        <input ref={self.chat_input.clone()} type="text" placeholder="Message" class="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700" name="message" required=true />
-                        <button onclick={submit} class="p-3 shadow-sm bg-blue-600 w-10 h-10 rounded-full flex justify-center items-center color-white">
+                        <input ref={self.chat_input.clone()} type="text" placeholder="Message" class="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full border-black border-10 outline-none focus:text-gray-700" name="message" required=true />
+                        <button onclick={submit} class="p-3 shadow-sm bg-green-500 w-10 h-10 rounded-full flex justify-center items-center color-white">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-white">
                                 <path d="M0 0h24v24H0z" fill="none"></path><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
                             </svg>
